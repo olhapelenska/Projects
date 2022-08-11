@@ -1,0 +1,199 @@
+.wiki-main {
+  &__content {
+    padding: 150px 0;
+    width: 83%;
+    margin: 0 auto;
+    display: flex;
+    gap: 35px;
+
+    @media (max-width: 820px) {
+      width: 100%;
+    }
+
+    @media (max-width: 650px) {
+      gap: 12px;
+      padding: 80px 0;
+    }
+  }
+
+  &__left-sidebar,
+  &__right-sidebar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 12px 17px;
+    gap: 10px;
+    background: #211c48;
+    border-radius: 4px;
+    font-weight: 600;
+    font-size: 24px;
+    line-height: 40px;
+    font-feature-settings: "salt" on, "liga" off;
+    height: fit-content;
+
+    a {
+      transition: 0.2s;
+
+      @media (min-width: 1000px) {
+        &:hover {
+          color: #e36ff7;
+        }
+      }
+    }
+
+    @media (max-width: 650px) {
+      padding: 6px 9px;
+      gap: 8px;
+      font-size: 14px;
+      line-height: 20px;
+      margin-top: 65px;
+    }
+
+    span {
+      color: #8b88b5;
+    }
+  }
+
+  &__middle-content {
+    width: 100%;
+  }
+
+  &__form {
+    display: flex;
+    justify-content: space-between;
+
+    @media (max-width: 650px) {
+      margin-left: -45.77px;
+      margin-right: -45.77px;
+    }
+
+    &-input {
+      width: 78.4%;
+
+      @media (max-width: 650px) {
+        width: 80%;
+      }
+
+      input {
+        width: 100%;
+      }
+    }
+
+    &-button {
+      width: 20%;
+
+      @media (max-width: 650px) {
+        width: 16%;
+      }
+
+      .btn {
+        width: 100%;
+      }
+    }
+  }
+
+  &__btn {
+    &:hover {
+      background: #131838 padding-box;
+    }
+
+    .btn-text {
+      @media (max-width: 650px) {
+        display: none;
+      }
+    }
+
+    .btn-svg {
+      display: none;
+      @media (max-width: 650px) {
+        display: block;
+      }
+    }
+  }
+
+  &__accordion {
+    padding-top: 30px;
+
+    @media (max-width: 650px) {
+      padding-top: 25px;
+    }
+  }
+
+  &__accordion-item {
+    position: relative;
+    // border-bottom-style: solid;
+    // border-bottom-width: 1px;
+    // border-image: linear-gradient(to right, #28d6e2 0%, #ea6bf7 100%) 1;
+
+    &::after {
+      content: "";
+      width: 100%;
+      position: absolute;
+      left: 0;
+      bottom: -1px;
+      height: 1px;
+      background: linear-gradient(to right, #28d6e2 0%, #ea6bf7 100%);
+    }
+  }
+
+  &__accordion-title {
+    display: block;
+    padding: 20px 0;
+    margin: 0 15px;
+    position: relative;
+    cursor: pointer;
+
+    @media (max-width: 650px) {
+      padding: 12px 0;
+      margin: 0 3px 0 0;
+    }
+
+    &::before,
+    &::after {
+      content: "";
+      width: 10px;
+      height: 1.5px;
+      background-color: #fff;
+      position: absolute;
+      top: 50%;
+      border-radius: 4px;
+      transition: all 0.3s ease 0s;
+
+      @media (max-width: 650px) {
+        width: 7px;
+      }
+    }
+
+    &::before {
+      transform: rotate(40deg);
+      right: 6px;
+
+      @media (max-width: 650px) {
+        right: 4px;
+      }
+    }
+
+    &::after {
+      transform: rotate(-40deg);
+      right: 0;
+    }
+
+    &.active {
+      &::before {
+        transform: rotate(-40deg);
+      }
+      &::after {
+        transform: rotate(40deg);
+      }
+    }
+  }
+
+  &__accordion-description {
+    display: none;
+    padding-bottom: 20px;
+
+    @media (max-width: 650px) {
+      padding-bottom: 12px;
+    }
+  }
+}

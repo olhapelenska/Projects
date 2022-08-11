@@ -1,0 +1,133 @@
+.reviews {
+  background-image: url("../img/bottom-wave.svg");
+  background-position-y: bottom;
+  background-position-x: center;
+  background-repeat: no-repeat;
+
+  &__container {
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 110px;
+
+    @media (max-width: 650px) {
+      padding-bottom: 80px;
+    }
+  }
+
+  header {
+    align-self: center;
+  }
+
+  &__title {
+    @include gradient-text;
+  }
+
+  &__description {
+    font-family: "OpenSans";
+    padding: 15px 0 60px;
+    align-self: center;
+    width: 50%;
+    text-align: center;
+
+    @media (max-width: 650px) {
+      padding: 12px 0px 40px;
+      width: 100%;
+    }
+  }
+
+  &__slider-item {
+    padding: 30px;
+    background: rgba(33, 28, 72, 0.4);
+    backdrop-filter: blur(7px);
+    border-radius: 4px;
+    // margin: 0 30px;
+
+    @media (max-width: 650px) {
+      padding: 15px;
+    }
+  }
+
+  &__slider-title {
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 22px;
+    color: #ffffff;
+
+    @media (max-width: 650px) {
+      font-size: 14px;
+      line-height: 17px;
+    }
+  }
+
+  &__slider-position {
+    font-weight: 600;
+    padding: 5px 0 12px;
+
+    @media (max-width: 650px) {
+      padding: 5px 0 8px;
+    }
+  }
+
+  &__btn {
+    align-self: center;
+    margin-top: 50px;
+
+    @media (max-width: 650px) {
+      margin-top: 30px;
+    }
+  }
+
+  .slider-reviews {
+    position: relative;
+    padding: 0px 50px;
+    margin: 0 30px;
+
+    @media (max-width: 650px) {
+      margin: 0;
+      padding: 0px 20px;
+    }
+
+    .slick-arrow {
+      position: absolute;
+      top: 50%;
+      // z-index: 10;
+      color: #fff;
+      transform: translateY(-50%);
+      font-size: 0;
+      height: 22.54px;
+      width: 20px;
+      cursor: pointer;
+
+      @media (max-width: 650px) {
+        height: 13.52px;
+        width: 12px;
+      }
+    }
+
+    .slick-arrow.slick-prev {
+      left: 0;
+      background: url("../img/slider-arrow-prev.svg") 0 0 no-repeat;
+
+      @media (max-width: 650px) {
+        background: url("../img/slider-arrow-prev-mob.svg") 0 0 no-repeat;
+      }
+    }
+
+    .slick-arrow.slick-next {
+      right: 0;
+      background: url("../img/slider-arrow-next.svg") 0 0 no-repeat;
+
+      @media (max-width: 650px) {
+        background: url("../img/slider-arrow-next-mob.svg") 0 0 no-repeat;
+      }
+    }
+
+    .slick-slide {
+      margin: 0 16px;
+
+      @media (max-width: 650px) {
+        margin: 0;
+      }
+    }
+  }
+}

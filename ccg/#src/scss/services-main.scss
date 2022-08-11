@@ -1,0 +1,121 @@
+.services-main {
+  background-image: url("../img/bottom-wave.svg");
+  background-repeat: no-repeat;
+  background-position-y: bottom;
+  background-position-x: center;
+
+  &__container {
+    padding: 0 50px;
+    @media (max-width: 1000px) {
+      padding: 0;
+    }
+  }
+
+  &__boxes {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto;
+    column-gap: 100px;
+    row-gap: 60px;
+    padding: 100px 0 150px;
+
+    @media (max-width: 1000px) {
+      column-gap: 50px;
+      row-gap: 30px;
+    }
+
+    @media (max-width: 650px) {
+      grid-template-columns: 1fr;
+      padding: 80px 0 80px 15px;
+    }
+  }
+
+  &__box {
+    padding: 30px;
+    background: rgba(33, 28, 72, 0.4);
+    backdrop-filter: blur(7px);
+    border-radius: 4px;
+    position: relative;
+
+    @media (max-width: 650px) {
+      padding: 20px 15px 20px 5px;
+    }
+
+    &::before {
+      position: absolute;
+      width: 35px;
+      height: 35px;
+      background: linear-gradient(180deg, #28d6e2 -3.85%, #ea6bf7 100%);
+      top: 8px;
+      left: -17px;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: "Montserrat";
+      font-weight: 600;
+      font-size: 24px;
+      line-height: 29px;
+
+      @media (max-width: 650px) {
+        width: 30px;
+        height: 30px;
+        font-size: 18px;
+        line-height: 22px;
+      }
+    }
+
+    &:first-child {
+      &::before {
+        content: "1";
+      }
+    }
+
+    &:nth-child(2) {
+      &::before {
+        content: "2";
+      }
+    }
+
+    &:nth-child(3) {
+      &::before {
+        content: "3";
+      }
+    }
+
+    &:nth-child(4) {
+      &::before {
+        content: "4";
+      }
+    }
+  }
+
+  &__box-title {
+    padding-bottom: 10px;
+
+    @media (max-width: 650px) {
+      padding-left: 30px;
+    }
+  }
+
+  &__box-list {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+  }
+
+  &__list-item {
+    position: relative;
+    margin-left: 20px;
+
+    &::before {
+      content: " ";
+      position: absolute;
+      width: 3px;
+      height: 3px;
+      background-color: #8b88b5;
+      top: 10px;
+      left: -13px;
+    }
+  }
+}
