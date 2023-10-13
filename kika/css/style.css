@@ -642,63 +642,6 @@ textarea {
   pointer-events: all;
 }
 
-.preloader {
-  background-color: #f3f3f3;
-  position: relative;
-  width: 100vw;
-  height: 100vh;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-}
-
-._no-webp .preloader__mask{
-  background-image: url(../img/Rectangle.png); }
-
-.preloader__mask {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  mix-blend-mode: overlay;
-  opacity: 1;
-  z-index: 1;
-}
-
-.preloader__ellipse {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-}
-
-.preloader .eye-preloader {
-  position: relative;
-  display: inline-block;
-  border-radius: 50%;
-  height: 150px;
-  width: 150px;
-  background: #000;
-}
-
-.preloader .eye-preloader::after {
-  /*pupil*/
-  position: absolute;
-  bottom: 85px;
-  right: 50px;
-  width: 40px;
-  height: 40px;
-  background: #fff;
-  border-radius: 50%;
-  content: " ";
-}
-
 .error-404 {
   position: relative;
   width: 100vw;
@@ -1769,6 +1712,73 @@ textarea {
 
 .footer__media-icons {
   padding-left: 20px;
+}
+
+.preloader {
+  background: #f3f3f3;
+  height: 100vh;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 9999;
+}
+
+.preloader__ellipse {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+
+._no-webp .preloader__mask{
+  background-image: url(../img/Rectangle.png); }
+
+.preloader__mask {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  mix-blend-mode: overlay;
+  opacity: 1;
+  z-index: 1;
+}
+
+.preloader__icon {
+  border-radius: 50%;
+  height: 150px;
+  width: 150px;
+  background: #000;
+  position: absolute;
+  left: calc(50% - 75px);
+  top: calc(50% - 75px);
+  -webkit-animation: rotation 1s linear infinite;
+          animation: rotation 1s linear infinite;
+}
+
+.preloader__icon::before {
+  content: "";
+  position: absolute;
+  top: 28.8px;
+  left: 31.2px;
+  width: 39.6px;
+  height: 39.6px;
+  background: #fff;
+  border-radius: 50%;
+}
+
+@-webkit-keyframes rotation {
+  100% {
+    -webkit-transform: rotateZ(360deg);
+            transform: rotateZ(360deg);
+  }
+}
+
+@keyframes rotation {
+  100% {
+    -webkit-transform: rotateZ(360deg);
+            transform: rotateZ(360deg);
+  }
 }
 
 .banner-home__container {
@@ -6247,12 +6257,12 @@ textarea {
 }
 
 @media (max-width: 425px) {
-  .preloader .eye-preloader {
+  .preloader__icon {
     height: 90px;
     width: 90px;
   }
 
-  .preloader .eye-preloader::after {
+  .preloader__icon::before {
     bottom: 51px;
     right: 30px;
     width: 24px;
@@ -6362,8 +6372,6 @@ textarea {
 
 ._webp .modal-thanks__mask{ background-image: url(../img/Rectangle.webp); }
 
-._webp .preloader__mask{ background-image: url(../img/Rectangle.webp); }
-
 ._webp .error-404__mask{ background-image: url(../img/Rectangle.webp); }
 
 ._webp .article-1-parallax{ background-image: url(../img/parallax1.webp); }
@@ -6375,6 +6383,8 @@ textarea {
 ._webp .banner-article__mask{ background-image: url(../img/Rectangle.webp); }
 
 ._webp .footer__mask{ background-image: url(../img/Rectangle.webp); }
+
+._webp .preloader__mask{ background-image: url(../img/Rectangle.webp); }
 
 ._webp .services__mask{ background-image: url(../img/Rectangle.webp); }
 

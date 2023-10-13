@@ -16,49 +16,50 @@ testWebP(function (support) {
 
 //burger
 
-let iconMenu = document.querySelector(".header__burger");
-if (iconMenu) {
-  let delay = 500;
-  let menuBody = document.querySelector(".header__nav");
-  let bodyHide = document.querySelector("body");
-  iconMenu.addEventListener("click", function (e) {
-    iconMenu.classList.toggle("_active");
-    menuBody.classList.toggle("_active");
-    bodyHide.classList.toggle("_lock");
-    header.classList.toggle("_active");
-  });
+function toggleBurger() {
+  const headerBurger = document.querySelector(".header__burger");
+  if (headerBurger) {
+    const headerNav = document.querySelector(".header__nav");
+    const body = document.querySelector("body");
+    headerBurger.addEventListener("click", function (e) {
+      headerBurger.classList.toggle("_active");
+      headerNav.classList.toggle("_active");
+      body.classList.toggle("_lock");
+      header.classList.toggle("_active");
+    });
+  }
 }
-function menu_close() {
-  let iconMenu = document.querySelector(".header__burger");
-  let menuBody = document.querySelector(".header__nav");
-  let bodyHide = document.querySelector("body");
-  iconMenu.classList.remove("_active");
-  menuBody.classList.remove("_active");
-  bodyHide.classList.remove("_lock");
+
+toggleBurger();
+
+function closeBurger() {
+  const headerBurger = document.querySelector(".header__burger");
+  const headerNav = document.querySelector(".header__nav");
+  const body = document.querySelector("body");
+  headerBurger.classList.remove("_active");
+  headerNav.classList.remove("_active");
+  body.classList.remove("_lock");
   header.classList.remove("_active");
 }
 
-//
-
-//
-
-let links = document.querySelectorAll("a"),
+const links = document.querySelectorAll("a, button"),
   cursor = document.querySelector(".cursor"),
   homeGal = document.querySelector(".our-works-home__gal"),
   worksGal = document.querySelector(".our-works__gal"),
-  servicesItems = document.querySelector(".our-services__item"),
+  servicesItems = document.querySelectorAll(".our-services__item"),
+  servicesItemsBlock = document.querySelector(".our-services__items"),
   sliderUs = document.querySelector(".slider-about-us"),
   banner = document.querySelector(".banner");
 
 if (cursor) {
-  let cursorCoords = getCoords(cursor),
+  const cursorCoords = getCoords(cursor),
     cursorRadius = cursorCoords.width / 2;
 
   document.addEventListener("mousemove", (e) => {
     cursor.style.top = e.pageY - cursorRadius + "px";
     cursor.style.left = e.pageX - cursorRadius + "px";
 
-    let f = false;
+    let enlargeCursor = false;
 
     links.forEach((el) => {
       if (
@@ -67,71 +68,11 @@ if (cursor) {
         e.pageX >= getCoords(el).left &&
         e.pageX <= getCoords(el).right
       ) {
-        f = true;
+        enlargeCursor = true;
         cursor.style.transform = "scale(2)";
       }
-
-      if (sliderUs) {
-        let sliderUsCoords = getCoords(sliderUs);
-
-        if (e.pageY >= sliderUsCoords.top && e.pageY <= sliderUsCoords.bottom) {
-          cursor.style.transform = "scale(0)";
-        }
-      } else if (homeGal || servicesItems) {
-        let homeGalCoords = getCoords(homeGal),
-          servicesItemsCoords = getCoords(servicesItems);
-
-        if (
-          (e.pageY >= homeGalCoords.top &&
-            e.pageY <= homeGalCoords.bottom &&
-            e.pageX >= homeGalCoords.left &&
-            e.pageX <= homeGalCoords.right) ||
-          (e.pageY >= servicesItemsCoords.top &&
-            e.pageY <= servicesItemsCoords.bottom &&
-            e.pageX >= servicesItemsCoords.left &&
-            e.pageX <= servicesItemsCoords.right)
-        ) {
-          cursor.style.transform = "scale(0)";
-        }
-      } else if (worksGal) {
-        let worksGalCoords = getCoords(worksGal);
-
-        if (
-          e.pageY >= worksGalCoords.top &&
-          e.pageY <= worksGalCoords.bottom &&
-          e.pageX >= worksGalCoords.left &&
-          e.pageX <= worksGalCoords.right
-        ) {
-          cursor.style.transform = "scale(0)";
-        }
-      } else if (servicesItems) {
-        //   servicesItems.forEach(function (el) {
-        //     if (
-        //       e.pageY >= getCoords(el).top &&
-        //       e.pageY <= getCoords(el).bottom &&
-        //       e.pageX >= getCoords(el).left &&
-        //       e.pageX <= getCoords(el).right
-        //     ) {
-        //       cursor.style.transform = "scale(0)";
-        //     } else {
-        //       cursor.style.transform = "none";
-        //     }
-        //   });
-        //   let servicesItemsCoords = getCoords(servicesItems);
-        //   console.log(servicesItemsCoords);
-        //   if (
-        //     e.pageY >= servicesItemsCoords.top &&
-        //     e.pageY <= servicesItemsCoords.bottom &&
-        //     e.pageX >= servicesItemsCoords.left &&
-        //     e.pageX <= servicesItemsCoords.right
-        //   ) {
-        //     cursor.style.transform = "scale(0)";
-        //   } else {
-        //     cursor.style.transform = "none";
-        //   }
-      }
     });
-    if (!f) {
+    if (!enlargeCursor) {
       cursor.style.transform = "none";
     }
   });
@@ -219,28 +160,18 @@ function changeCursor(block, cursorWrapper, cursorInner) {
     cursorWrapperRadius = cursorWrapperCoords.width / 2;
   if (cursorWrapper) {
     document.addEventListener("mousemove", (e) => {
-      // let y = e.clientY + "px",
-      //   x = e.clientX + "px";
-      // cursorWrapper.style.transform = `translate3d(${x}, ${y}, 0px)`;
-
       cursorWrapper.style.top = e.clientY - cursorWrapperRadius + "px";
       cursorWrapper.style.left = e.clientX - cursorWrapperRadius + "px";
 
-      // let sliderUsCoords = getCoords(sliderUs);
-      let blockCoords = getCoords(block),
-        headerCoords = getCoords(header);
+      let blockCoords = getCoords(block);
 
       if (
         e.pageY >= blockCoords.top &&
         e.pageY <= blockCoords.bottom &&
         e.pageX >= blockCoords.left &&
         e.pageX <= blockCoords.right
-        // &&
-        // e.pageY <= headerCoords.top &&
-        // e.pageY >= headerCoords.bottom &&
-        // e.pageX <= headerCoords.left &&
-        // e.pageX >= headerCoords.right
       ) {
+        cursor.style.transform = "scale(0)";
         cursorInner.style.transform = "rotate(0deg) scale(1, 1)";
         cursorInner.style.opacity = "1";
       } else {
@@ -261,11 +192,66 @@ if (worksGal) {
   changeCursor(worksGal, lookWrap, look);
 }
 
-let findOutWrap = document.querySelector(".find-out-wrap"),
-  findOut = document.querySelector(".find-out");
-if (servicesItems) {
-  changeCursor(servicesItems, findOutWrap, findOut);
+if (servicesItemsBlock) {
+  const findOutWrap = document.querySelector(".find-out-wrap"),
+    findOut = document.querySelector(".find-out"),
+    findOutWrapCoords = getCoords(findOutWrap),
+    findOutWrapRadius = findOutWrapCoords.width / 2;
+
+  document.addEventListener("mousemove", (e) => {
+    findOutWrap.style.top = e.clientY - findOutWrapRadius + "px";
+    findOutWrap.style.left = e.clientX - findOutWrapRadius + "px";
+    let enlargeCursor = false;
+    servicesItems.forEach((el) => {
+      const blockCoords = getCoords(el);
+
+      if (
+        e.pageY >= blockCoords.top &&
+        e.pageY <= blockCoords.bottom &&
+        e.pageX >= blockCoords.left &&
+        e.pageX <= blockCoords.right
+      ) {
+        enlargeCursor = true;
+        cursor.style.transform = "scale(0)";
+        findOut.style.transform = "rotate(0deg) scale(1, 1)";
+        findOut.style.opacity = "1";
+      }
+    });
+    if (!enlargeCursor) {
+      findOut.style.transform = "rotate(90deg) scale(0, 0)";
+      findOut.style.opacity = "0";
+    }
+  });
 }
+// if (servicesItemsBlock) {
+//   const findOutWrap = document.querySelector(".find-out-wrap"),
+//     findOut = document.querySelector(".find-out"),
+//     findOutWrapCoords = getCoords(findOutWrap),
+//     findOutWrapRadius = findOutWrapCoords.width / 2;
+
+//   servicesItems.forEach((el) => {
+//     document.addEventListener("mousemove", (e) => {
+//       findOutWrap.style.top = e.clientY - findOutWrapRadius + "px";
+//       findOutWrap.style.left = e.clientX - findOutWrapRadius + "px";
+
+//       const blockCoords = getCoords(el);
+
+//       if (
+//         e.pageY >= blockCoords.top &&
+//         e.pageY <= blockCoords.bottom &&
+//         e.pageX >= blockCoords.left &&
+//         e.pageX <= blockCoords.right
+//       ) {
+//         cursor.style.transform = "scale(0)";
+//         findOut.style.transform = "rotate(0deg) scale(1, 1)";
+//         findOut.style.opacity = "1";
+//       } else {
+//         findOut.style.transform = "rotate(90deg) scale(0, 0)";
+//         findOut.style.opacity = "0";
+//       }
+//     });
+//   });
+// }
 
 let dragWrap = document.querySelector(".drag-wrap"),
   drag = document.querySelector(".drag");
@@ -340,7 +326,9 @@ let lastScrollTop = 0,
   header = document.querySelector(".header"),
   headerEyeLogo = document.querySelector(".header__eye-logo"),
   headerLogo = document.querySelector(".header__logo"),
-  headerBurger = document.querySelectorAll(".banner-work .header__burger span"),
+  headerBurgerLines = document.querySelectorAll(
+    ".banner-work .header__burger span"
+  ),
   homeButton = document.querySelector(".our-works-home__all-works-button"),
   servicesButton = document.querySelector(".services__order-service-button"),
   brandwall = document.querySelector(".brandwall__img"),
@@ -494,8 +482,8 @@ window.addEventListener("scroll", () => {
       headerButtonWork.style.color = "#fff";
     }
 
-    if (headerBurger) {
-      headerBurger.forEach((el) => {
+    if (headerBurgerLines) {
+      headerBurgerLines.forEach((el) => {
         el.style.backgroundColor = "#131612";
       });
     }
@@ -515,8 +503,8 @@ window.addEventListener("scroll", () => {
       headerButtonWork.style.color = "#131612";
     }
 
-    if (headerBurger) {
-      headerBurger.forEach((el) => {
+    if (headerBurgerLines) {
+      headerBurgerLines.forEach((el) => {
         el.style.backgroundColor = "#fff";
       });
     }
@@ -632,7 +620,7 @@ $(document).ready(function () {
 
 document.querySelector("body").addEventListener("mousemove", eyeball);
 
-function eyeball() {
+function eyeball(event) {
   let eye = document.querySelectorAll(".eye");
 
   eye.forEach(function (eye) {
@@ -643,3 +631,8 @@ function eyeball() {
     eye.style.transform = "rotate(" + rot + "deg)";
   });
 }
+
+let preloader = document.querySelector(".preloader");
+window.addEventListener("load", function () {
+  preloader.style.display = "none";
+});
