@@ -27,6 +27,16 @@ if (burger) {
   });
 }
 
+function menu_close() {
+  let iconMenu = document.querySelector(".header__burger");
+  let menuBody = document.querySelector(".header__nav");
+  let bodyHide = document.querySelector("body");
+  iconMenu.classList.remove("_active");
+  menuBody.classList.remove("_active");
+  bodyHide.classList.remove("_lock");
+  header.classList.remove("_active");
+}
+
 const header = document.querySelector(".header");
 
 let lastScrollTop = 0;
@@ -180,6 +190,17 @@ $(".flowing-scroll").on("click", function () {
     );
   }
   return false;
+});
+
+$(document).ready(function () {
+  $(".video").magnificPopup({
+    type: "iframe",
+    midClick: true,
+    mainClass: "mfp-fade",
+    removalDelay: 160,
+    preloader: false,
+    fixedContentPos: false,
+  });
 });
 
 let preloader = document.getElementById("preloader");
